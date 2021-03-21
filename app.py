@@ -37,13 +37,17 @@ def signin():
 
 @app.route("/member")
 def member():
-    return render_template("member.html")
+    if 'user_id' in session:
+        username = session['user_id']
+        return render_template("member.html")
+    else:
+        return render_template("index.html")
 
 @app.route("/signout")
 def signout():
-    session.pop('username',None)
-    return redirect(url_for('index'))
-#    return render_template("index.html")
+    session.pop('user_id',None)
+    return redirect('/')
+
 @app.route("/error")
 def error():
     return render_template("error.html")
