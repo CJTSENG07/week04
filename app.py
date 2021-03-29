@@ -38,7 +38,6 @@ def signin():
 @app.route("/member")
 def member():
     if 'user_id' in session:
-        username = session['user_id']
         return render_template("member.html")
     else:
         return render_template("index.html")
